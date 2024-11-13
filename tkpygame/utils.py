@@ -37,25 +37,39 @@ def print_colored(text, color=TerminalColors.WHITE, only_if_not_debugging=True):
 
 
 def update_canvas_rect(canvas):
+    canvas_is_resizable = False
     if callable(canvas.width):
         canvas._width = canvas.width()
+        canvas_is_resizable = True
     else:
         canvas._width = canvas.width
 
     if callable(canvas.height):
         canvas._height = canvas.height()
+        canvas_is_resizable = True
     else:
         canvas._height = canvas.height
 
     if callable(canvas.x):
         canvas._x = canvas.x()
+        canvas_is_resizable = True
     else:
         canvas._x = canvas.x
 
     if callable(canvas.y):
         canvas._y = canvas.y()
+        canvas_is_resizable = True
     else:
         canvas._y = canvas.y
+
+    if canvas_is_resizable:
+        for obj in canvas.objects:
+            try:
+                update_rect(obj)
+            except Exception as e:
+                print_colored(f"Error updating object {obj.name} on canvas {canvas.name}: {e}", TerminalColors.FAIL)
+
+    return canvas_is_resizable
 
 
 def update_rect(obj):
@@ -148,10 +162,16 @@ def set_icon_from_base64(base64_string):
     icon_surface = pygame.image.frombuffer(data, size, mode)
     pygame.display.set_icon(icon_surface)
 
-def init(screen_width=DEFAULT_SCREEN_WIDTH, screen_height=DEFAULT_SCREEN_HEIGHT):
+def init(screen_width=DEFAULT_SCREEN_WIDTH, screen_height=DEFAULT_SCREEN_HEIGHT, resizable=True):
     pygame.init()
     pygame.display.set_caption("TkPyGame Window")
-    pygame.display.set_mode((screen_width, screen_height))
+
+    # Make this window resizable if specified
+    if resizable:
+        pygame.display.set_mode((screen_width, screen_height), pygame.RESIZABLE)
+    else:
+        pygame.display.set_mode((screen_width, screen_height))
+
     set_icon_from_base64(TKPYGAME_LOGO_BASE64)
     
     return pygame.display.get_surface()
