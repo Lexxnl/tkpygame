@@ -25,13 +25,15 @@ class Canvas:
         else:
             self.buffer = None
 
-        update_canvas_rect(self)
+        self.resizeable = update_canvas_rect(self)
         canvases.append(self)
         print_colored(f'New canvas object <{self.name}> initiated', TerminalColors.OKBLUE)
 
     def draw(self, draw_buffer_to_screen=True):
         if self.visible:
             if self.buffer is None:
+                if self.resizeable:
+                    update_canvas_rect(self)
                 pygame.draw.rect(self.screen, self.color, (self._x, self._y, self._width, self._height))
 
                 for obj in self.objects:
