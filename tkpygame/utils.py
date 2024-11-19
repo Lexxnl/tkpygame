@@ -182,4 +182,5 @@ def flip(clock = None):
         canvas.draw()
         
     pygame.display.flip()
-    clock.tick(60)
+    if clock is not None:
+        clock.tick()
