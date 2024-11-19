@@ -165,6 +165,7 @@ def set_icon_from_base64(base64_string):
 def init(screen_width=DEFAULT_SCREEN_WIDTH, screen_height=DEFAULT_SCREEN_HEIGHT, resizable=True):
     pygame.init()
     pygame.display.set_caption("TkPyGame Window")
+    clock = pygame.time.Clock()
 
     # Make this window resizable if specified
     if resizable:
@@ -174,10 +175,11 @@ def init(screen_width=DEFAULT_SCREEN_WIDTH, screen_height=DEFAULT_SCREEN_HEIGHT,
 
     set_icon_from_base64(TKPYGAME_LOGO_BASE64)
     
-    return pygame.display.get_surface()
+    return pygame.display.get_surface(), clock
 
-def flip():
+def flip(clock = None):
     for canvas in canvases:
         canvas.draw()
         
     pygame.display.flip()
+    clock.tick(60)
