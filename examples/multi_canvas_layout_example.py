@@ -11,7 +11,7 @@ def get_canvas_height(screen: pygame.Surface):
     return screen.get_height()
 
 def main():
-    screen = init(screen_width=800, screen_height=600)
+    screen, clock = init(screen_width=800, screen_height=600)
 
     leftcanvas = Canvas(screen, 0, 0, lambda: get_left_canvas_width(screen), lambda: get_canvas_height(screen), 'mycanvasname', color=CANVAS_COLOR_SECONDARY)
     middlecanvas = Canvas(screen, lambda: get_left_canvas_width(screen), 0, lambda: get_left_canvas_width(screen), lambda: get_canvas_height(screen), 'mycanvasname1', color=BLUEISH_COLOR)
