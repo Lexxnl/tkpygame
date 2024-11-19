@@ -42,7 +42,7 @@ def change_label_visible_on_click(label):
 # Main function to initialize and run the GUI application
 def main():
     # Initialize the main screen with specified width and height
-    screen = init(screen_width=800, screen_height=600)
+    screen, clock = init(screen_width=800, screen_height=600)
     
     # Create a canvas that covers the entire screen area for holding GUI elements
     canvas = Canvas(screen, 0, 0, 800, 600, 'mycanvasname')
