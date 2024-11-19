@@ -1,4 +1,5 @@
 screen = None
+clock = None
 
 canvases = []
 dropdowns = []
