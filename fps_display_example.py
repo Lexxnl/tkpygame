@@ -1,9 +1,10 @@
 from tkpygame import *
 
 def main():
+    
     import pygame
 
-    screen, clock = init(screen_width=800, screen_height=600)
+    screen, clock = init(screen_width=800, screen_height=600, resizable=False)
     variables.clock = clock
     canvas = Canvas(screen, 0, 0, 800, 600, 'mycanvasname')
     label = Label(canvas, 'Hello, world!', 'center', (0, 0), 100, 50, 'mylabelname')
