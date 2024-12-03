@@ -1,0 +1,96 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', sans-serif;
+    display: flex;
+    height: 100vh;
+    background: #0d1117; 
+    color: white;
+}
+
+#navbar {
+    width: 250px;
+    background-color: #0d1117;
+    color: white;
+    padding: 20px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    overflow-y: auto;
+    border: #252a31 1px solid;
+}
+
+#navbar header {
+    font-size: 20px;
+    margin-bottom: 20px;
+}
+
+#navbar ul {
+    list-style: none;
+    padding: 0;
+}
+
+.nav-link {
+    color: white;
+    text-decoration: none;
+    display: block;
+    padding: 10px;
+    font-size: 18px;
+    border-radius: 5px;
+}
+
+.nav-link:hover {
+    background-color: #1a1f24;
+}
+
+main {
+    margin-left: 250px; /* Ensure content doesn't overlap navbar */
+    padding: 20px;
+    width: calc(100% - 250px); /* Adjust content width */
+    overflow: auto;
+}
+
+.main-section {
+    margin-bottom: 20px;
+}
+
+@media (max-width: 768px) {
+    #navbar {
+        width: 200px;
+    }
+
+    main {
+        margin-left: 0;
+        width: 100%;
+    }
+
+    #navbar ul {
+        padding: 10px;
+    }
+
+    .nav-link {
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 480px) {
+    #navbar {
+        width: 100%;
+        height: auto;
+        position: relative;
+    }
+
+    main {
+        margin-left: 0;
+        width: 100%;
+    }
+
+    .nav-link {
+        padding: 8px;
+    }
+}

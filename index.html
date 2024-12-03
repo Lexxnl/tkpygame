@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link href="https://fonts.googleapis.com/css?family=Mona+Sans&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TkPygame Documentation</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Code block styling */
+        pre {
+            background-color: #2e2e2e;
+            color: #f8f8f2;
+            padding: 15px;
+            border-radius: 5px;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 1rem;
+            overflow-x: auto;
+        }
+
+        code {
+            font-family: var(--fontStack-monospace, ui-monospace, SFMono-Regular, SF Mono, Menlo, Consolas, Liberation Mono, monospace);
+            font-size: 1rem;
+        }
+
+        /* Syntax Highlighting */
+        .keyword { color: #ff79c6; }
+        .function { color: #50fa7b; }
+        .variable { color: #f1fa8c; }
+        .string { color: #f1fa8c; }
+        .comment { color: #6272a4; font-style: italic; }
+        .parameter { color: #ffb86c; }
+
+        /* Adding specific styles for code blocks */
+        .code-example {
+            background-color: #1e1e1e;
+            border: 1px solid #444;
+            padding: 10px;
+            border-radius: 4px;
+            color: #ddd;
+            line-height: 1.5;
+            margin-bottom: 20px;
+            overflow-x: auto;
+        }
+
+        .code-example .keyword {
+            color: #ff79c6;
+        }
+
+        .code-example .function {
+            color: #50fa7b;
+        }
+
+        .code-example .variable {
+            color: #f1fa8c;
+        }
+
+        .code-example .string {
+            color: #f1fa8c;
+        }
+
+        .code-example .comment {
+            color: #6272a4;
+            font-style: italic;
+        }
+
+        .code-example .parameter {
+            color: #ffb86c;
+        }
+    </style>
+</head>
+<body>
+
+    <nav id="navbar">
+        <header>
+            <h1>TkPygame Documentation</h1>
+        </header>
+        <ul>
+            <li><a class="nav-link" href="#Introduction">Introduction</a></li>
+            <li><a class="nav-link" href="#Canvas_System">Canvas System</a></li>
+            <li><a class="nav-link" href="#Icons_Handling">Icons Handling</a></li>
+            <li><a class="nav-link" href="#Initialization">Initialization</a></li>
+            <li><a class="nav-link" href="#Rendering">Rendering</a></li>
+            <li><a class="nav-link" href="#Functions">Functions</a></li>
+        </ul>
+    </nav>
+
+    <main id="main-doc">
+        <section id="Introduction" class="main-section">
+            <header>
+                <h2>Introduction</h2>
+            </header>
+            <p>TkPygame is a Python-based framework that combines the graphics rendering capabilities of Pygame with the GUI elements of Tkinter. It is designed to create interactive and graphical applications with ease, leveraging the strengths of both libraries.</p>
+            <p>It provides a high-level API for building applications that include graphics, buttons, and other widgets, enabling users to focus on game logic and user interface design.</p>
+            <p>In this documentation, we will explore the main features and how to get started with TkPygame to create your own graphical applications.</p>
+            <p>The primary aim of TkPygame is to streamline the integration of game mechanics with the Tkinter interface for a smoother development process.</p>
+            <div class="code-example">
+                <code><span class="keyword">import</span> tkpygame</code><br>
+                <code>tkpygame.<span class="function">init</span>()</code><br>
+                <code>tkpygame.<span class="function">start_game</span>()</code>
+            </div>
+            <ul>
+                <li>Import the TkPygame library to access its functionalities.</li>
+                <li>Initialize TkPygame with the <code>init()</code> method.</li>
+                <li>Start the game loop to render and update the game/application.</li>
+            </ul>
+        </section>
+
+        <section id="Canvas_System" class="main-section">
+            <header>
+                <h2>Canvas System</h2>
+            </header>
+            <p>The TkPygame canvas system is an essential feature for rendering graphics. It provides a resizable and customizable surface where various graphical elements can be drawn. This system allows for flexible rendering of game scenes, objects, and background graphics.</p>
+            <p>A canvas in TkPygame can hold various objects, and their positions can be dynamically adjusted as per the needs of the application. This allows for fluid interaction and graphics management within the game window.</p>
+            <p>Here is an example of creating and using a canvas in TkPygame:</p>
+            <div class="code-example">
+                <code><span class="variable">canvas</span> = tkpygame.<span class="function">Canvas</span>(<span class="parameter">width=500</span>, <span class="parameter">height=500</span>)</code><br>
+                <code><span class="variable">canvas</span>.<span class="function">add_object</span>(my_object)</code>
+            </div>
+            <ul>
+                <li>Create a canvas with specific width and height to define the drawable area.</li>
+                <li>Add objects to the canvas that can be manipulated and rendered during the game loop.</li>
+            </ul>
+            <p>Canvas objects can include images, shapes, and text, and they can be dynamically updated as the game progresses. The canvas allows for both 2D and 3D rendering depending on the type of game or application you're developing.</p>
+            <div class="code-example">
+                <code><span class="variable">canvas</span>.<span class="function">update</span>()</code>
+            </div>
+        </section>
+
+        <section id="Icons_Handling" class="main-section">
+            <header>
+                <h2>Icons Handling</h2>
+            </header>
+            <p>Setting and managing icons is an essential part of any application, including games. TkPygame provides an easy way to set the application window icon by using an image file (e.g., PNG, JPG).</p>
+            <p>The icon is typically displayed in the window's title bar and taskbar, giving the application a professional and personalized appearance.</p>
+            <p>Here is an example of how to set an icon in TkPygame:</p>
+            <div class="code-example">
+                <code>tkpygame.<span class="function">set_icon</span>(<span class="string">"icon.png"</span>)</code>
+            </div>
+            <ul>
+                <li>Load an image file using Pygame's image module and convert it to the appropriate format for TkPygame.</li>
+                <li>Set the image as the window icon to display it on the title bar.</li>
+            </ul>
+            <p>To support various screen resolutions and sizes, it is recommended to use multiple image sizes (e.g., 32x32px, 64x64px) to ensure the icon displays correctly across all platforms.</p>
+            <div class="code-example">
+                <code>tkpygame.<span class="function">set_icon</span>(<span class="string">"icon_64x64.png"</span>)</code>
+            </div>
+        </section>
+
+        <section id="Initialization" class="main-section">
+            <header>
+                <h2>Initialization</h2>
+            </header>
+            <p>Initialization is a crucial step in TkPygame as it sets up the window, game loop, and other screen attributes. The framework needs to be initialized before any graphical rendering can occur.</p>
+            <p>The <code>init()</code> method initializes the necessary components, such as the screen size, frame rate, and other settings. It also prepares the game loop, which is the core of the application's continuous operation.</p>
+            <p>Here is an example of how to initialize a TkPygame application:</p>
+            <div class="code-example">
+                <code><span class="variable">screen</span>, <span class="variable">clock</span> = tkpygame.<span class="function">init</span>(<span class="parameter">screen_width=800</span>, <span class="parameter">screen_height=600</span>)</code>
+            </div>
+            <ul>
+                <li>Initialize the screen and clock, where the screen defines the window size, and the clock controls the frame rate.</li>
+                <li>Configure the window size and other attributes to fit the needs of your application.</li>
+            </ul>
+        </section>
+
+        <section id="Rendering" class="main-section">
+            <header>
+                <h2>Rendering</h2>
+            </header>
+            <p>Rendering involves drawing the visual elements of the game or application onto the screen. This is handled by TkPygame through a variety of methods, including object manipulation, background updates, and sprite rendering.</p>
+            <p>The <code>flip()</code> function is responsible for flipping the display, ensuring that the most recent frame is shown on the screen.</p>
+            <div class="code-example">
+                <code>tkpygame.<span class="function">flip</span>(clock)</code>
+            </div>
+            <p>The frame rate is controlled by the clock object, which keeps the application running smoothly at a consistent speed.</p>
+        </section>
+
+        <section id="Functions" class="main-section">
+            <header>
+                <h2>Functions</h2>
+            </header>
+            <p>Here is a list of important functions in TkPygame that allow you to manage the application window, canvas, and game objects:</p>
+
+            <h3>1. <code>init(screen_width, screen_height)</code></h3>
+            <p>Initializes TkPygame, setting up the game window and preparing it for rendering.</p>
+            <ul>
+                <li><b>Parameters:</b></li>
+                <li><code>screen_width</code> (int): The width of the game window.</li>
+                <li><code>screen_height</code> (int): The height of the game window.</li>
+            </ul>
+            <p><b>Example:</b></p>
+            <div class="code-example">
+                <code>screen, clock = tkpygame.init(screen_width=800, screen_height=600)</code>
+            </div>
+
+            <h3>2. <code>set_icon(icon_path)</code></h3>
+            <p>Sets the application icon from the specified image file.</p>
+            <ul>
+                <li><b>Parameters:</b></li>
+                <li><code>icon_path</code> (str): The file path to the image to be used as the icon.</li>
+            </ul>
+            <p><b>Example:</b></p>
+            <div class="code-example">
+                <code>tkpygame.set_icon("icon.png")</code>
+            </div>
+
+            <h3>3. <code>add_object(object)</code></h3>
+            <p>Adds a drawable object to the canvas or screen.</p>
+            <ul>
+                <li><b>Parameters:</b></li>
+                <li><code>object</code> (Object): The object to be added to the canvas (e.g., a sprite, image, or shape).</li>
+            </ul>
+            <p><b>Example:</b></p>
+            <div class="code-example">
+                <code>canvas.add_object(my_sprite)</code>
+            </div>
+
+            <h3>4. <code>flip(clock)</code></h3>
+            <p>Flips the display to render the latest frame.</p>
+            <ul>
+                <li><b>Parameters:</b></li>
+                <li><code>clock</code> (pygame.Clock): The clock object used to control the frame rate.</li>
+            </ul>
+            <p><b>Example:</b></p>
+            <div class="code-example">
+                <code>tkpygame.flip(clock)</code>
+            </div>
+
+            <h3>5. <code>update_display()</code></h3>
+            <p>Updates the display with the latest rendered frame.</p>
+            <ul>
+                <li><b>No parameters.</b></li>
+            </ul>
+            <p><b>Example:</b></p>
+            <div class="code-example">
+                <code>tkpygame.update_display()</code>
+            </div>
+        </section>
+    </main>
+
+</body>
+</html>
