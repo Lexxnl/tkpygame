@@ -33,46 +33,62 @@ Here's a quick example to get you started. This assumes you have installed `tkpy
 ### Example
 
 ```python
-from tkpygame import *  # Import all modules and functions from tkpygame library for GUI and event handling
+from tkpygame import *
+from tkpygame.button import Button
 
-# Function to toggle the visibility of a label when called
-def change_label_visible_on_click(label):
-    label.visible = not label.visible  # Switch the label's visibility state
+# Function to be executed when the button is clicked
+def on_button_click():
+    print("Button clicked!")
 
-# Main function to initialize and run the GUI application
-def main():
-    # Initialize the main screen with specified width and height
-    screen, clock = init(screen_width=800, screen_height=600)
-    
-    # Create a canvas that covers the entire screen area for holding GUI elements
-    canvas = Canvas(screen, 0, 0, 800, 600, 'mycanvasname')
-    
-    # Add a label to the canvas; initially hidden
-    # - Positioned 60 pixels below the center (0, 60)
-    # - Size is 100x50 pixels
-    label = Label(canvas, 'Hello, world!', 'center', (0, 60), 100, 50, 'mylabelname', visible=False)
-    
-    # Add a button to the canvas; when clicked, it toggles the label visibility
-    # - Positioned at the center of the canvas (0, 0)
-    # - Size is 100x50 pixels
-    button = Button(canvas, 'Click me!', 'center', (0, 0), 100, 50, 'mybuttonname', 
-                    lambda: change_label_visible_on_click(label))
+def get_screen_size():
+    return my_screen.size
 
-    # Main event loop to keep the application running
-    running = True
-    while running:
-        # Process each event in the event queue
-        for event in pygame.event.get():
-            # Check if the close button on the window is clicked
-            if event.type == pygame.QUIT:
-                running = False  # End the loop to close the application
+# Initialize the screen and canvas
+my_screen = Screen(title='My Screen', size=(800, 600), resizeable=True)
+my_canvas = Canvas(screen=my_screen, size=(lambda: get_screen_size()), name='my_canvas', visible=True)
 
-        # Update the display to render any changes on the screen
-        flip()
+# Initialize labels
+top_left_label = Label(canvas=my_canvas, text='TOP LEFT', anchor=Anchor.TOP_LEFT, padding=(10, 10))
+top_label = Label(canvas=my_canvas, text='TOP', anchor=Anchor.TOP, padding=(10, 10))
+top_right_label = Label(canvas=my_canvas, text='TOP RIGHT', anchor=Anchor.TOP_RIGHT, padding=(10, 10))
 
-# Entry point of the program
-if __name__ == '__main__':
-    main()
+center_right_label = Label(canvas=my_canvas, text='CENTER RIGHT', anchor=Anchor.RIGHT, padding=(10, 10))
+bottom_right_label = Label(canvas=my_canvas, text='BOTTOM RIGHT', anchor=Anchor.BOTTOM_RIGHT, padding=(10, 10))
+bottom_label = Label(canvas=my_canvas, text='BOTTOM', anchor=Anchor.BOTTOM, padding=(10, 10))
+
+bottom_left_label = Label(canvas=my_canvas, text='BOTTOM LEFT', anchor=Anchor.BOTTOM_LEFT, padding=(10, 10))
+center_left_label = Label(canvas=my_canvas, text='CENTER LEFT', anchor=Anchor.LEFT, padding=(10, 10))
+center_label = Label(canvas=my_canvas, text='CENTER', anchor=Anchor.CENTER)
+
+fps_label = Label(canvas=my_canvas, text='FPS: ', anchor=Anchor.TOP_LEFT, font='arial', font_size=18, font_color='green', name='fps_label')
+
+
+# Create the button
+my_button = Button(
+    canvas=my_canvas, 
+    text="Click Me", 
+    padding=(200, 200)
+)
+
+fps_label = Label(canvas=my_canvas, text='FPS: ', anchor=Anchor.TOP_LEFT, font='arial', font_size=18, font_color='green', name='fps_label')
+
+running = True
+while running:
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            running = False
+        if event.type == pygame.VIDEORESIZE:
+            my_canvas.size = (event.w, event.h)
+            for object in my_canvas.objects:
+                object.position = absolute_position(object)
+                
+    fps_label.text = f'FPS: {my_screen.clock.get_fps()}'
+    fps_label.update_text_surface()
+
+
+    my_screen.update()
+
+pygame.quit()
 
 ```
 
